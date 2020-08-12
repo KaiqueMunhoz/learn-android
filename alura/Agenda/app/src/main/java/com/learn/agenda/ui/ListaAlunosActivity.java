@@ -8,6 +8,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.learn.agenda.R;
+import com.learn.agenda.dao.AlunoDAO;
+import com.learn.agenda.model.Aluno;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,8 +22,9 @@ public class ListaAlunosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_alunos);
         setTitle("Lista de alunos");
+        final AlunoDAO dao = new AlunoDAO();
+
         final ListView listaDeAlunos = findViewById(R.id.activity_lista_alunos_list_view);
-        List<String> alunos = new ArrayList<>(Arrays.asList("Kaique", "Munhoz"));
-        listaDeAlunos.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, alunos));
+        listaDeAlunos.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, dao.todos()));
     }
 }
