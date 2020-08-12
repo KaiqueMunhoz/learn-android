@@ -12,33 +12,39 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.learn.agenda.R;
 import com.learn.agenda.dao.AlunoDAO;
-import com.learn.agenda.model.Aluno;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class ListaAlunosActivity extends AppCompatActivity {
+    private final AlunoDAO dao = new AlunoDAO();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_alunos);
         setTitle("Lista de alunos");
-        
-        FloatingActionButton floatingActionButton = findViewById(R.id.activity_lista_alunos_floating_button);
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+        configuraFabNovoAluno();
+    }
+
+    private void configuraFabNovoAluno() {
+        FloatingActionButton fabNovoAluno = findViewById(R.id.activity_lista_alunos_fab_novo_aluno);
+        fabNovoAluno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ListaAlunosActivity.this, FormularioAlunoActivity.class));
+                abreFormularioAlunoActivity();
             }
         });
+    }
+
+    private void abreFormularioAlunoActivity() {
+        startActivity(new Intent(this, FormularioAlunoActivity.class));
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        final AlunoDAO dao = new AlunoDAO();
+        configuraLista();
+    }
+
+    private void configuraLista() {
         final ListView listaDeAlunos = findViewById(R.id.activity_lista_alunos_list_view);
         listaDeAlunos.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, dao.todos()));
     }
