@@ -2,7 +2,9 @@ package com.learn.agenda.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -12,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.learn.agenda.R;
 import com.learn.agenda.dao.AlunoDAO;
+import com.learn.agenda.model.Aluno;
 
 public class ListaAlunosActivity extends AppCompatActivity {
     private final AlunoDAO dao = new AlunoDAO();
@@ -22,6 +25,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lista_alunos);
         setTitle("Lista de alunos");
         configuraFabNovoAluno();
+        dao.salva(new Aluno("Kaique", "35988597863", "munhoz13km@gmail.com"));
     }
 
     private void configuraFabNovoAluno() {
@@ -47,5 +51,11 @@ public class ListaAlunosActivity extends AppCompatActivity {
     private void configuraLista() {
         final ListView listaDeAlunos = findViewById(R.id.activity_lista_alunos_list_view);
         listaDeAlunos.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, dao.todos()));
+        listaDeAlunos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Log.i("Aluno: ", "" + position);
+            }
+        });
     }
 }
