@@ -1,6 +1,8 @@
 package com.learn.agenda.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -22,6 +24,13 @@ public class FormularioAlunoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_formulario_aluno);
         setTitle("Novo aluno");
         inicializacaoDosCampos();
+        final Intent intent = getIntent();
+        final Aluno aluno = (Aluno) intent.getSerializableExtra("aluno");
+
+        campoNome.setText(aluno.getNome());
+        campoTelefone.setText(aluno.getTelefone());
+        campoEmail.setText(aluno.getEmail());
+
         configuraBotaoSalvar();
     }
 

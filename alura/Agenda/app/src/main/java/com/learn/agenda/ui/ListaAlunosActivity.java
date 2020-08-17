@@ -16,6 +16,8 @@ import com.learn.agenda.R;
 import com.learn.agenda.dao.AlunoDAO;
 import com.learn.agenda.model.Aluno;
 
+import java.util.List;
+
 public class ListaAlunosActivity extends AppCompatActivity {
     private final AlunoDAO dao = new AlunoDAO();
 
@@ -50,11 +52,16 @@ public class ListaAlunosActivity extends AppCompatActivity {
 
     private void configuraLista() {
         final ListView listaDeAlunos = findViewById(R.id.activity_lista_alunos_list_view);
+        final List<Aluno> lista = dao.todos();
+
         listaDeAlunos.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, dao.todos()));
         listaDeAlunos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Log.i("Aluno: ", "" + position);
+                final Aluno aluno = lista.get(position);
+                final Intent vaiParaFormularioAlunoActivity = new Intent(ListaAlunosActivity.this, FormularioAlunoActivity.class);
+                vaiParaFormularioAlunoActivity.putExtra("aluno", aluno);
+                startActivity(vaiParaFormularioAlunoActivity);
             }
         });
     }
