@@ -25,9 +25,9 @@ public class FormularioAlunoActivity extends AppCompatActivity {
         setTitle("Novo aluno");
         inicializacaoDosCampos();
         final Intent intent = getIntent();
-        Aluno aluno = (Aluno) intent.getSerializableExtra("aluno");
 
-        if(aluno != null && aluno.getId() != 0) {
+        if(intent.hasExtra("aluno")) {
+            Aluno aluno = (Aluno) intent.getSerializableExtra("aluno");
             alunoId = aluno.getId();
             campoNome.setText(aluno.getNome());
             campoTelefone.setText(aluno.getTelefone());
