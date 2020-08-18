@@ -7,26 +7,26 @@ import java.util.List;
 
 public class AlunoDAO {
 
-    private final static List<Aluno> listaDeAlunos = new ArrayList<>();
+    private final static List<Aluno> alunos = new ArrayList<>();
     private static int contadorId = 1;
 
     public void salva(Aluno aluno) {
         aluno.setId(contadorId);
-        listaDeAlunos.add(aluno);
+        alunos.add(aluno);
         contadorId = contadorId + 1;
     }
 
-    public void edita(Aluno aluno, int id) {
-        for (Aluno a: listaDeAlunos) {
-            if(a.getId() == id) {
-                aluno.setId(id);
-                final int position = listaDeAlunos.indexOf(a);
-                listaDeAlunos.set(position, aluno);
+    public void edita(Aluno alunoModificado, int id) {
+        for (Aluno aluno: alunos) {
+            if(aluno.hasId()) {
+                alunoModificado.setId(id);
+                final int position = alunos.indexOf(aluno);
+                alunos.set(position, alunoModificado);
             }
         }
     }
 
     public List<Aluno> todos() {
-        return new ArrayList<>(listaDeAlunos);
+        return new ArrayList<>(alunos);
     }
 }

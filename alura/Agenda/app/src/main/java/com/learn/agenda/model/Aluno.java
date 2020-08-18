@@ -33,6 +33,10 @@ public class Aluno implements Serializable {
         return email;
     }
 
+    public boolean hasId() {
+        return this.id > 0;
+    }
+
     @NonNull
     @Override
     public String toString() {

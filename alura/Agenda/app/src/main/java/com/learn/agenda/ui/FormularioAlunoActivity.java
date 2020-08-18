@@ -11,23 +11,27 @@ import com.learn.agenda.R;
 import com.learn.agenda.dao.AlunoDAO;
 import com.learn.agenda.model.Aluno;
 
+import static com.learn.agenda.ui.ConstantsActivities.CHAVE_ALUNO;
+
 public class FormularioAlunoActivity extends AppCompatActivity {
+    private final AlunoDAO dao = new AlunoDAO();
+    private final String NOVO_ALUNO = "Novo aluno";
     private EditText campoNome;
     private EditText campoTelefone;
     private EditText campoEmail;
-    private final AlunoDAO dao = new AlunoDAO();
     private int alunoId;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario_aluno);
-        setTitle("Novo aluno");
+        setTitle(NOVO_ALUNO);
         inicializacaoDosCampos();
         final Intent intent = getIntent();
 
-        if(intent.hasExtra("aluno")) {
-            Aluno aluno = (Aluno) intent.getSerializableExtra("aluno");
+        if(intent.hasExtra(CHAVE_ALUNO)) {
+            Aluno aluno = (Aluno) intent.getSerializableExtra(CHAVE_ALUNO);
             alunoId = aluno.getId();
             campoNome.setText(aluno.getNome());
             campoTelefone.setText(aluno.getTelefone());
@@ -43,13 +47,14 @@ public class FormularioAlunoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 final Aluno aluno = novoAluno();
-                novo(aluno);
+                finalizaFormulario(aluno);
             }
         });
     }
 
-    private void novo(Aluno aluno) {
-        if(alunoId != 0) {
+    private void finalizaFormulario(Aluno aluno) {
+        final boolean hasId = alunoId > 0;
+        if(hasId) {
             dao.edita(aluno, alunoId);
         } else {
             dao.salva(aluno);
