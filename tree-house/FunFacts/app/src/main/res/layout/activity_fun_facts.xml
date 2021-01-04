@@ -4,24 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/teal_700"
     tools:context=".FunFactsActivity">
-
-    <TextView
-        android:id="@+id/titleTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:text="@string/fun_facts_title" />
-
-    <TextView
-        android:id="@+id/factTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:textSize="24sp"
-        android:text="@string/fun_facts_fact" />
 
     <Button
         android:id="@+id/showFactButton"
@@ -29,6 +13,27 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="@string/fun_facts_button_title" />
+        android:text="@string/fun_facts_button_title"
+        android:textColor="@color/black"
+        app:backgroundTint="@color/white" />
+
+    <TextView
+        android:id="@+id/factTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:text="@string/fun_facts_fact"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fun_facts_title"
+        android:textColor="@color/almostWhite"
+        android:textSize="24sp" />
 
 </RelativeLayout>
