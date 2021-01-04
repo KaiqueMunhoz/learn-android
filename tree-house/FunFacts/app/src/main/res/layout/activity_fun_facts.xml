@@ -21,7 +21,7 @@
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
         android:textSize="24sp"
-        android:text="Ants stretch when they wake up in the morning" />
+        android:text="@string/fun_facts_message" />
 
     <Button
         android:id="@+id/button"
@@ -29,6 +29,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="Show Another Fun Fact" />
+        android:text="@string/fun_facts_button_title" />
 
 </RelativeLayout>
