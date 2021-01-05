@@ -15,7 +15,8 @@ public class FunFactsActivity extends AppCompatActivity {
 
     private TextView factTextView;
     private Button showFactButton;
-    
+    final private FactBook factBook = new FactBook();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +26,7 @@ public class FunFactsActivity extends AppCompatActivity {
         showFactButton = findViewById(R.id.showFactButton);
 
         showFactButton.setOnClickListener(button -> {
-            final String funFact = new FactBook().getFact();
+            final String funFact = factBook.getFact();
             factTextView.setText(funFact);
         });
 
