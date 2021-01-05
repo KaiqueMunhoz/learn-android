@@ -2,20 +2,20 @@ package com.learn.funfacts;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
 
 public class FunFactsActivity extends AppCompatActivity {
 
     private TextView factTextView;
     private Button showFactButton;
+    private RelativeLayout funFactRelativeLayout;
+
     final private FactBook factBook = new FactBook();
+    final private BackgroundColorScreen backgroundColorScreen = new BackgroundColorScreen();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +24,14 @@ public class FunFactsActivity extends AppCompatActivity {
 
         factTextView = findViewById(R.id.factTextView);
         showFactButton = findViewById(R.id.showFactButton);
+        funFactRelativeLayout = findViewById(R.id.funFactRelativeLayout);
 
         showFactButton.setOnClickListener(button -> {
             final String funFact = factBook.getFact();
             factTextView.setText(funFact);
+
+            final int backgroundColor = backgroundColorScreen.getColor();
+            funFactRelativeLayout.setBackgroundColor(backgroundColor);
         });
 
     }
