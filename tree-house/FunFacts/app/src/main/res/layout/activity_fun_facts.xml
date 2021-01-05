@@ -16,7 +16,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:text="@string/fun_facts_button_title"
-        android:textColor="@color/black"
+        android:textColor="@color/teal_700"
         app:backgroundTint="@color/white" />
 
     <TextView
