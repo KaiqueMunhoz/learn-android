@@ -7,6 +7,10 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+
+import java.util.List;
 
 public class NoteActivity extends AppCompatActivity {
 
@@ -16,6 +20,15 @@ public class NoteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_note);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        buildSpinner();
+    }
+
+    private void buildSpinner() {
+        Spinner spinnerCourses = findViewById(R.id.spinner_courses);
+        final List<CourseInfo> courses = DataManager.getInstance().getCourses();
+        final ArrayAdapter adapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, courses);
+        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        spinnerCourses.setAdapter(adapter);
     }
 
     @Override
