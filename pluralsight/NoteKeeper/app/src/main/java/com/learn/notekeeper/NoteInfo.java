@@ -1,7 +1,5 @@
-package com.jwhh.jim.notekeeper;
+package com.learn.notekeeper;
 
-import android.os.Parcel;
-import android.os.Parcelable;
 
 public final class NoteInfo {
     private CourseInfo mCourse;

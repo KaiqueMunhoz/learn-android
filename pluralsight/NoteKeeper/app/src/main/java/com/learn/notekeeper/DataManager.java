@@ -1,4 +1,4 @@
-package com.jwhh.jim.notekeeper;
+package com.learn.notekeeper;
 
 import java.util.ArrayList;
 import java.util.List;
